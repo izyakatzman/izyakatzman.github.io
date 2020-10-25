@@ -109,6 +109,9 @@
     header {
         text-align: center;
         background-image: url(https://klike.net/uploads/posts/2019-06/medium/1561182942_2.jpg);
+         width: 100%;
+  max-width: 1470px;
+  margin: 0 auto;
     }
     header a {
         display: block;
