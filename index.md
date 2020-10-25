@@ -38,6 +38,7 @@
         font-size: 50px;
         border-radius: 10px;
         word-wrap: break-word;
+        font-family: 'Open Sans', sans-serif;
     }
     .buttons {
         margin: 0 auto;
@@ -159,7 +160,7 @@
         clear: both;
     }
     .topmenu > li {
-        width: 250px;
+        width: 400px;
         float: left;
         position: relative;
         font-family: 'Open Sans', sans-serif;
