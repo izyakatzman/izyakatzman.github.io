@@ -588,7 +588,7 @@
     function f_sin(){
         if(IsFirst() === true) {
             first_num = document.getElementById("log").innerHTML;
-            check = parseFloat(first_num) * Math.PI / 180;
+            check = parseFloat(first_num);
             first_num = Math.sin(parseFloat(check));
             action = "";
             document.getElementById("log").innerHTML = first_num;
@@ -596,14 +596,14 @@
         else {
             second_num = document.getElementById("log").innerHTML;
             second_num = second_num.slice(parseInt(first_num.length) + 1);
-            check = parseFloat(second_num) * Math.PI / 180;
+            check = parseFloat(second_num);
             document.getElementById("log").innerHTML = first_num + action + Math.sin(check);
         }
     }
     function f_cos() {
         if(IsFirst() === true) {
             first_num = document.getElementById("log").innerHTML;
-            check = parseFloat(first_num) * Math.PI / 180;
+            check = parseFloat(first_num);
             first_num = Math.cos(check);
             action = "";
             document.getElementById("log").innerHTML = first_num;
@@ -611,14 +611,14 @@
         else {
             second_num = document.getElementById("log").innerHTML;
             second_num = second_num.slice(parseInt(first_num.length) + 1);
-            check = parseFloat(second_num) * Math.PI / 180;
+            check = parseFloat(second_num);
             document.getElementById("log").innerHTML = first_num + action + Math.cos(check);
         }
     }
     function f_tg() {
         if(IsFirst() === true) {
             first_num = document.getElementById("log").innerHTML;
-            check = parseFloat(first_num) * Math.PI / 180;
+            check = parseFloat(first_num);
             first_num = Math.tan(check);
             action = "";
             document.getElementById("log").innerHTML = first_num;
@@ -626,7 +626,7 @@
         else {
             second_num = document.getElementById("log").innerHTML;
             second_num = second_num.slice(parseInt(first_num.length) + 1);
-            check = parseFloat(second_num) * Math.PI / 180;
+            check = parseFloat(second_num);
             document.getElementById("log").innerHTML = first_num + action + Math.tan(check);
         }
     }
