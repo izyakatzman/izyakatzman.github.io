@@ -214,7 +214,7 @@
         content: "👧";
     }
     .submenu-link-2:after {
-        content: "👦";
+        content: "";
     }
     .submenu li:last-child a {border-bottom: none;}
     .topmenu > li:hover .submenu {
