@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calc</title>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=rEjCaB4_uFWLV1Fv2rKH3_3F4PRNzcbgnizYdUA9qZgaX9GW-zqDicHIpq8jRxjM_vbxvVTbmQXw1g11gxNhIdgclWmHhkHQyrnc4ADiuRbUiWtDjnIctdlgMNa1LsInmwRdpuJ3kksu7eb21sFp7cnIOUHbVWsJKPZiNvNeoCVWFzyG04nePxo14WFwdLmqx0BKOdBvX-3fArC793HXuz-JxJ0jxKpvSp6b-t5TgXeDf0PaXJ58CjbJDaWVj1qmjSAt9kv1aoB1mf_4fGXwAwgUbARY4x1xH2aP0XPYT8ygV_v5ExXqSIx3ETJJ3nMibhgo_Mgf2p1owN4NVm80ldMNtZOSg41JVnxs9rfSCs7wkHgsnzlLbP9x8oE81THj2N8wwane-2rSf6IUMBwSxQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9wZnVyLW15LnNoYXJlcG9pbnQuY29tL3BlcnNvbmFsLzEwMzIxOTI5NTRfcGZ1cl9ydS9Eb2N1bWVudHMvJUQwJUE0JUQwJUIwJUQwJUI5JUQwJUJCJUQxJThCJTIwJUQxJTg3JUQwJUIwJUQxJTgyJUQwJUJFJUQwJUIyJTIwTWljcm9zb2Z0JTIwVGVhbXMvOCVEMCVCQiVEMCVCMCVEMCVCMV8lRDAlOTIlRDAlQjAlRDElODElRDAlQjglRDAlQkIlRDElOEMlRDAlQjUlRDAlQjIlRDAlQjAlMjAlRDAlOUElRDElODAlRDAlQjglRDElODIlRDElODElRDAlQkElRDAlQjglRDAlQjkuaHRtbA"/><style type="text/css">
+    main {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    .center {
+        max-width: 1300px;
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .left, .right {
+        width: 200px;
+        height: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 80px;
+        margin-left: 10px;
+    }
+    #log {
+        margin: 0 auto;
+        background-color: ghostwhite;
+        border: 1px solid;
+        width: 560px;
+        min-height: 150px;
+        display: flex;
+        justify-content: center; /*Центрирование по горизонтали*/
+        align-items: center;
+        font-size: 50px;
+        border-radius: 10px;
+        word-wrap: break-word;
+    }
+    .buttons {
+        margin: 0 auto;
+        max-width: 600px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    button {
+        font-family: 'Playfair Display', serif;
+        width: 160px;
+        height: 80px;
+        background-color: #D5B45B;
+        border-radius: 10px;
+        font-size: 40px;
+        font-weight: bold;
+        text-shadow: 2px 2px ghostwhite;
+    }
+    button:hover {
+        border: 3px dotted #3a7999;
+        color: firebrick;
+        background: ghostwhite;
+    }
+    .b1 {
+        font-family: 'Playfair Display', serif;
+        width: 560px;
+        height: 80px;
+        background-color: orangered;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 700px) {
+        #log {
+            width: 550px;
+        }
+        button {
+            width: 154px;
+            height: 77px;
+            font-size: 24px;
+        }
+        .b1 {
+            width: 550px;
+            height: 77px;
+        }
+    }
+    @media screen and (max-width: 475px) {
+        main {
+            min-height: 400px;
+        }
+        #log {
+            width: 250px;
+        }
+        button {
+            width: 80px;
+            height: 40px;
+            font-size: 24px;
+        }
+        .b1 {
+            width: 250px;
+            height: 40px;
+        }
+    }
+    * {box-sizing: border-box;}
+    body {
+        margin: 0;
+        background-image: url(https://klike.net/uploads/posts/2019-06/1561182970_30.jpg);
+    }
+    header {
+        text-align: center;
+        background-image: url(https://klike.net/uploads/posts/2019-06/medium/1561182942_2.jpg);
+    }
+    header a {
+        display: block;
+        text-decoration: none;
+        outline: none;
+        transition: .3s ease-in-out;
+    }
+    .logo {
+        color: firebrick;
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        padding: 20px 0;
+        font-weight: bold;
+        text-shadow: 2px 2px #D5B45B;
+    }
+    .logo:hover {
+        color: white;
+        animation: bounce 1s;
+    }
+    @keyframes bounce {
+        0%, 20%, 60%, 100% {
+            transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-20px);
+            transform: translateY(-20px);
+        }
+
+        80% {
+            transform: translateY(-10px);
+            transform: translateY(-10px);
+        }
+    }
+    nav {
+        display: table;
+        margin: 0 auto;
+        text-shadow: 2px 2px firebrick;
+    }
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .topmenu:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .topmenu > li {
+        width: 250px;
+        float: left;
+        position: relative;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .topmenu > li > a {
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: bold;
+        color: #D5B45B;
+        font-family: 'Playfair Display', serif;
+        padding: 30px 45px;
+    }
+    .topmenu li a:hover {
+        color: ghostwhite;
+    }
+    .topmenu-link:after {
+        content: "🏠";
+    }
+    .topmenu-link-1:after {
+        content: "🔒";
+    }
+    .topmenu-link-2:after {
+        content: "📖";
+    }
+    .submenu-link:after {
+        content: "👇";
+    }
+    .submenu {
+        background: #273037;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        z-index: 5;
+        width: 240px;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin :0 0;
+        transition: .5s ease-in-out;
+    }
+    .submenu a {
+        color: white;
+        text-align: left;
+        padding: 12px 15px;
+        font-size: 18px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .submenu li a:hover {
+        color: #D5B45B;
+    }
+    .submenu-link-1:after {
+        content: "👧";
+    }
+    .submenu-link-2:after {
+        content: "👦";
+    }
+    .submenu li:last-child a {border-bottom: none;}
+    .topmenu > li:hover .submenu {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    footer {
+        padding: 10px;
+        background: black;
+        color: white;
+        text-align: center;
+        text-shadow: 2px 2px #D5B45B;
+        background-image: url(https://klike.net/uploads/posts/2019-06/medium/1561182942_2.jpg);
+    }
+    .footer-1{
+        color: firebrick;
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .footer-1:hover {
+        color: white;
+        animation: bounce 1s;
+    }
+    .footer-2{
+        color: firebrick;
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .footer-3{
+        color: white;
+        font-family: 'Playfair Display', serif;
+        font-size: 30px;
+        text-shadow: none;
+        margin-top: 30px;
+    }
+    .small-but {
+        background-color: coral;
+        width: 80px;
+        height: 80px;
+    }
+    .tooltip {
+        position: fixed;
+        padding: 5px 10px;
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: black;
+        font-size: 20px;
+        background: #fff;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+
+</style>
+
+</head>
+<body>
+<header>
+    <a href="" class="logo">LABORATORY 8</a>
+    <nav>
+        <ul class="topmenu">
+            <li><a href="#r1" class="topmenu-link">CALCUL</a></li>
+            <li><a href="" class="submenu-link">ABOUT US</a>
+                <ul class="submenu">
+                    <li><a target="_blank" class="submenu-link-1" href="https://vk.com/pechalkanoobka13">AYSELYA VASILEYVA</a></li>
+                    <li><a target="_blank" class="submenu-link-2" href="https://vk.com/segovsky">SERGEY KRITSKIY</a></li>
+                </ul>
+            </li>
+            <li><a target="_blank"
+                   href="http://www.consultant.ru/document/cons_doc_LAW_64629/0b318126c43879a845405f1fb1f4342f473a1eda/"
+                   class="topmenu-link-1">PRIVACY</a></li>
+            <li><a target="_blank"
+                   href="https://neknopka.ru/%D1%87%D1%82%D0%BE-%D0%BE%D0%B7%D0%BD%D0%B0%D1%87%D0%B0%D1%8E%D1%82-%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8-%D0%BD%D0%B0-%D0%BA%D0%B0%D0%BB%D1%8C%D0%BA%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D0%B5/"
+                   class="topmenu-link-2">HOW TO</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <script>
+        let tooltipElem;
+
+        document.onmouseover = function(event) {
+            let target = event.target;
+
+            // если у нас есть подсказка...
+            let tooltipHtml = target.dataset.tooltip;
+            if (!tooltipHtml) return;
+
+            // ...создадим элемент для подсказки
+
+            tooltipElem = document.createElement('div');
+            tooltipElem.className = 'tooltip';
+            tooltipElem.innerHTML = tooltipHtml;
+            document.body.append(tooltipElem);
+
+            // спозиционируем его сверху от аннотируемого элемента (top-center)
+            let coords = target.getBoundingClientRect();
+
+            let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+            if (left < 0) left = 0; // не заезжать за левый край окна
+
+            let top = coords.top - tooltipElem.offsetHeight - 5;
+            if (top < 0) { // если подсказка не помещается сверху, то отображать её снизу
+                top = coords.top + target.offsetHeight + 5;
+            }
+
+            tooltipElem.style.left = left + 'px';
+            tooltipElem.style.top = top + 'px';
+        };
+
+        document.onmouseout = function(e) {
+
+            if (tooltipElem) {
+                tooltipElem.remove();
+                tooltipElem = null;
+            }
+
+        };
+    </script>
+    <div class="left">
+        <button class="small-but" onclick="f_plus()">+</button>
+        <button class="small-but" onclick="f_minus()">-</button>
+        <button class="small-but" onclick="f_multiplication()">×</button>
+        <button class="small-but" onclick="f_division()">÷</button>
+        <button class="small-but" onclick="f_square()">x<sup>2</sup></button>
+        <button class="small-but" onclick="f_sqrt()"><sup>2</sup>√</button>
+        <button class="small-but" onclick="f_square_to_y()">x<sup>y</sup></button>
+        <button class="small-but" onclick="f_sqrt_to_y()"><sup>y</sup>√</button>
+        <button class="small-but" onclick="f_sin()">sin</button>
+        <button class="small-but" onclick="f_cos()">cos</button>
+        <button class="small-but" onclick="f_tg()">tg</button>
+        <button class="small-but" onclick="f_log()">log</button>
+    </div>
+    <div class="center">
+        <div class="buttons">
+            <button id="r1" onclick="Num1()">1</button>
+            <button id="r2" onclick="Num2()">2</button>
+            <button id="r3" onclick="Num3()">3</button>
+            <button id="r4" onclick="Num4()">4</button>
+            <button id="r5" onclick="Num5()">5</button>
+            <button id="r6" onclick="Num6()">6</button>
+            <button id="r7" onclick="Num7()">7</button>
+            <button id="r8" onclick="Num8()">8</button>
+            <button id="r9" onclick="Num9()">9</button>
+            <button onclick="f1()">⭐</button>
+            <button id="r0" onclick="Num0()">0</button>
+            <button onclick="f1()">⭐</button>
+        </div>
+        <div id="log">0</div>
+        <button id="equality" class="b1" onclick="f_equality()">RUN</button>
+    </div>
+    <div class="right">
+        <button id="zap" class="small-but" onclick="f_zap()">,</button>
+        <button id="plus-minus" class="small-but" data-tooltip="Поменять знак" onclick="f_plus_minus()">+/-</button>
+        <button id="del_last" class="small-but" data-tooltip="Удалить один символ" onclick="f_del_last()">1🗑</button>
+        <button id="del" class="small-but" data-tooltip="Отчистить всё" onclick="f_del()">🗑</button>
+        <button id="fact" class="small-but" onclick="f_fact()">x!</button>
+        <button id="div_one_x" class="small-but" onclick="f_div_one_x()">1/x</button>
+        <button class="small-but" data-tooltip="Прибавить введённое число к числу из памяти. Если память на момент клика пуста, то запомнить введённое число" onclick="f_mem_plus()">m+</button>
+        <button class="small-but" data-tooltip="Вычесть введённое число из числа из памяти" onclick="f_mem_minus()">m-</button>
+        <button class="small-but" data-tooltip="Стереть данные из памяти" onclick="f_mem_clear()">mc</button>
+        <button class="small-but" data-tooltip="Запомнить введённое число" onclick="f_mem_reader()">mr</button>
+        <button class="small-but" onclick="f_exp()">e</button>
+        <button class="small-but" onclick="f_pi()">π</button>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-1"><span>WRITE US FOR WORK TOGETHER!</span></div>
+        <div class="footer-2"><a href="mailto:1032192954@pfur.ru">✍</a></div>
+
+        <div class="footer-3"><span> © 2020</span></div>
+    </div>
+</footer>
+<div id="memory">No memory</div>
+<script type="text/javascript">
+    var first_num;
+    var action;
+    function IsFirst() {
+        if (typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            return false;
+        }
+        else return true;
+    }
+    function Num1() {
+        from_id = document.getElementById("r1").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num2() {
+        from_id = document.getElementById("r2").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num3() {
+        from_id = document.getElementById("r3").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num4() {
+        from_id = document.getElementById("r4").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num5() {
+        from_id = document.getElementById("r5").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num6() {
+        from_id = document.getElementById("r6").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num7() {
+        from_id = document.getElementById("r7").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num8() {
+        from_id = document.getElementById("r8").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num9() {
+        from_id = document.getElementById("r9").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function Num0() {
+        from_id = document.getElementById("r0").innerHTML;
+        from_log = document.getElementById("log").innerHTML;
+        if(from_log === "0") {
+            document.getElementById("log").innerHTML = "";
+        }
+        document.getElementById("log").innerHTML += from_id;
+    }
+    function f_plus() {
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "+";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+
+    }
+    function f_minus() {
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "-";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+    }
+    function f_multiplication() {
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "×";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+    }
+    function f_division() {
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "÷";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+    }
+    function f_square() {
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            first_num = Math.pow(parseFloat(first_num), 2);
+            action = "";
+            document.getElementById("log").innerHTML = first_num;
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            document.getElementById("log").innerHTML = first_num + action + Math.pow(parseFloat(second_num), 2);
+        }
+    }
+    function f_sqrt(){
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            first_num = Math.sqrt(parseFloat(first_num));
+            action = "";
+            document.getElementById("log").innerHTML = first_num;
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            document.getElementById("log").innerHTML = first_num + action + Math.sqrt(parseFloat(second_num), 2);
+        }
+    }
+    function f_square_to_y(){
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "^";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+    }
+    function f_sqrt_to_y(){
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof first_num != 'undefined' && document.getElementById("log").innerHTML.length > (first_num.length + 1)) {
+            f_equality();
+        }
+        if(typeof action != 'undefined' && action !== "") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+        }
+        number = document.getElementById("log").innerHTML;
+        action = "√";
+        first_num = number;
+        document.getElementById("log").innerHTML = number + action;
+    }
+    function f_sin(){
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            check = parseFloat(first_num) * Math.PI / 180;
+            first_num = Math.sin(parseFloat(check));
+            action = "";
+            document.getElementById("log").innerHTML = first_num;
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            check = parseFloat(second_num) * Math.PI / 180;
+            document.getElementById("log").innerHTML = first_num + action + Math.sin(check);
+        }
+    }
+    function f_cos() {
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            check = parseFloat(first_num) * Math.PI / 180;
+            first_num = Math.cos(check);
+            action = "";
+            document.getElementById("log").innerHTML = first_num;
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            check = parseFloat(second_num) * Math.PI / 180;
+            document.getElementById("log").innerHTML = first_num + action + Math.cos(check);
+        }
+    }
+    function f_tg() {
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            check = parseFloat(first_num) * Math.PI / 180;
+            first_num = Math.tan(check);
+            action = "";
+            document.getElementById("log").innerHTML = first_num;
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            check = parseFloat(second_num) * Math.PI / 180;
+            document.getElementById("log").innerHTML = first_num + action + Math.tan(check);
+        }
+    }
+    function f_log() {
+        if(IsFirst() === true) {
+            first_num = document.getElementById("log").innerHTML;
+            if(first_num > 0) {
+                first_num = Math.log(first_num);
+                action = "";
+                document.getElementById("log").innerHTML = first_num;
+            }
+            else {
+                alert("Данаая операция невозможна");
+                document.getElementById("log").innerHTML = "0";
+                first_num = undefined;
+                action = undefined;
+            }
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML;
+            second_num = second_num.slice(parseInt(first_num.length) + 1);
+            if(second_num > 0) {
+                document.getElementById("log").innerHTML = first_num + action + Math.log(second_num);
+            }
+            else  {
+                alert("Данаая операция невозможна");
+                document.getElementById("log").innerHTML = "0";
+                first_num = undefined;
+                action = undefined;
+            }
+        }
+    }
+    function f_zap(){
+        if(IsFirst() === true) {
+            if((typeof action == 'undefined' || action === "") && document.getElementById("log").innerHTML.includes('.') === false) {
+                document.getElementById("log").innerHTML += ".";
+            }
+            else if(action !== "" && typeof action != 'undefined'){
+                document.getElementById("log").innerHTML += "0.";
+            }
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML.slice(first_num.length + 1);
+            if(second_num.includes('.') === false) {
+                document.getElementById("log").innerHTML += ".";
+            }
+        }
+    }
+    function f_plus_minus(){
+        from_log = document.getElementById("log").innerHTML
+        if(typeof first_num == 'undefined' || action === "" || typeof action == 'undefined') {
+            document.getElementById("log").innerHTML = (parseFloat(from_log) * (-1));
+        }
+        else {
+            if(from_log.length === (first_num.length + 1)){
+                document.getElementById("log").innerHTML = (parseFloat(first_num) * (-1)) + action;
+                first_num = document.getElementById("log").innerHTML.slice(0, -1);
+            }
+            else {
+                second_num = document.getElementById("log").innerHTML.slice(first_num.length + 1);
+                document.getElementById("log").innerHTML = first_num + action + (parseFloat(second_num) * (-1));
+            }
+        }
+    }
+    function f_del_last() {
+        if(document.getElementById("log").innerHTML.length === "1") {
+            document.getElementById("log").innerHTML = "0";
+        }
+        else if(document.getElementById("log").innerHTML !== "0") {
+            document.getElementById("log").innerHTML = document.getElementById("log").innerHTML.slice(0, -1);
+            if(document.getElementById("log").innerHTML.length < first_num.length) {
+                first_num = document.getElementById("log").innerHTML;
+            }
+        }
+    }
+    function f_del() {
+        document.getElementById("log").innerHTML = "0";
+        first_num = undefined;
+        action = undefined;
+
+    }
+    function f_fact(){
+        var result = 1;
+        if(IsFirst() === true) {
+            if(action !== "" && typeof action != 'undefined') {
+                from_log = document.getElementById("log").innerHTML.slice(0, -1);
+                if(from_log !== "0") {
+                    for (var i = 1; i < (parseFloat(from_log) + 1); i++) {
+                        result *= i;
+                    }
+                }
+                else result = 0;
+                document.getElementById("log").innerHTML = result + action;
+            }
+            else {
+                from_log = document.getElementById("log").innerHTML;
+                if(from_log !== "0") {
+                    for (var i = 1; i < (parseFloat(from_log) + 1); i++) {
+                        result *= i;
+                    }
+                }
+                else result = 0;
+                document.getElementById("log").innerHTML = result;
+            }
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML.slice(parseInt(first_num.length) + 1);
+            if(second_num !== "0") {
+                for (var i = 1; i < (parseFloat(second_num) + 1); i++) {
+                    result *= i;
+                }
+            }
+            else result = 0;
+            document.getElementById("log").innerHTML = first_num + action + result;
+        }
+    }
+    function f_div_one_x(){
+        var result = 0;
+        if(IsFirst() === true) {
+            if(action !== "" && typeof action != 'undefined') {
+                from_log = document.getElementById("log").innerHTML.slice(0, -1);
+                if(from_log !== "0") {
+                    result = 1 / parseFloat(from_log);
+                }
+                document.getElementById("log").innerHTML = result + action;
+            }
+            else {
+                from_log = document.getElementById("log").innerHTML;
+                if(from_log !== "0") {
+                    result = 1 / parseFloat(from_log);
+                }
+                document.getElementById("log").innerHTML = result;
+            }
+        }
+        else {
+            second_num = document.getElementById("log").innerHTML.slice(parseInt(first_num.length) + 1);
+            if(second_num !== "0") {
+                result = 1 / parseFloat(second_num);
+            }
+            document.getElementById("log").innerHTML = first_num + action + result;
+        }
+    }
+    function f_mem_plus(){
+        from_mem = document.getElementById("memory").innerHTML;
+        from_log = document.getElementById("log").innerHTML
+        if (from_mem === "No memory") {
+            if (IsFirst() === true) {
+                if (action !== "" && typeof action != 'undefined') {
+                    document.getElementById("memory").innerHTML = from_log.slice(0, -1);
+                }
+                else {
+                    document.getElementById("memory").innerHTML = from_log;
+                }
+            }
+            else {
+                second_num = from_log.slice(parseInt(first_num.length) + 1);
+                document.getElementById("memory").innerHTML = second_num;
+            }
+        }
+        else {
+            if(IsFirst() === true) {
+                if(action !== "" && typeof action != 'undefined') {
+                    document.getElementById("memory").innerHTML = parseFloat(from_mem) + parseFloat(from_log.slice(0, -1));
+                }
+                else {
+                    document.getElementById("memory").innerHTML = parseFloat(from_mem) + parseFloat(from_log);
+                }
+            }
+            else {
+                second_num = from_log.slice(parseInt(first_num.length) + 1);
+                document.getElementById("memory").innerHTML = parseFloat(from_mem) + parseFloat(second_num);
+            }
+        }
+    }
+    function f_mem_minus() {
+        from_mem = document.getElementById("memory").innerHTML;
+        from_log = document.getElementById("log").innerHTML
+        if (from_mem === "No memory") {
+            if (IsFirst() === true) {
+                if (from_log === "0") {
+                    document.getElementById("memory").innerHTML = from_log;
+                }
+                else {
+                    if(action !== "" && typeof action != 'undefined') {
+                        document.getElementById("memory").innerHTML = "-" + from_log.slice(0, -1);
+                    }
+                    else {
+                        document.getElementById("memory").innerHTML = "-" + from_log;
+                    }
+                }
+            }
+            else {
+                second_num = from_log.slice(parseInt(first_num.length) + 1);
+                document.getElementById("memory").innerHTML = "-" + second_num;
+            }
+        }
+        else {
+            if(IsFirst() === true) {
+                if(action !== "" && typeof action != 'undefined') {
+                    document.getElementById("memory").innerHTML = parseFloat(from_mem) - parseFloat(from_log.slice(0, -1));
+                }
+                else {
+                    document.getElementById("memory").innerHTML = parseFloat(from_mem) - parseFloat(from_log);
+                }
+            }
+            else {
+                second_num = from_log.slice(parseInt(first_num.length) + 1);
+                document.getElementById("memory").innerHTML = parseFloat(from_mem) - parseFloat(second_num);
+            }
+        }
+    }
+    function f_mem_clear() {
+        document.getElementById("memory").innerHTML = "No memory";
+    }
+    function f_mem_reader() {
+        from_mem = document.getElementById("memory").innerHTML;
+        from_log = document.getElementById("log").innerHTML
+        if (from_mem === "No memory") {
+            if (IsFirst() === true) {
+                if (action !== "" && typeof action != 'undefined') {
+                    document.getElementById("memory").innerHTML = from_log.slice(0, -1);
+                }
+                else {
+                    document.getElementById("memory").innerHTML = from_log;
+                }
+            }
+            else {
+                second_num = from_log.slice(parseInt(first_num.length) + 1);
+                document.getElementById("memory").innerHTML = second_num;
+            }
+        }
+        else {
+            if(IsFirst() === true) {
+                if(action !== "" && typeof action != 'undefined') {
+                    document.getElementById("log").innerHTML = first_num + action + from_mem;
+                }
+                else {
+                    first_num = from_mem;
+                    document.getElementById("log").innerHTML = first_num;
+                }
+            }
+            else {
+                document.getElementById("log").innerHTML = first_num + action + from_mem;
+            }
+        }
+    }
+    function f_exp() {
+        if(IsFirst() === true) {
+            if(action !== "" && typeof action !== 'undefined') {
+                document.getElementById("log").innerHTML = first_num + action + Math.exp(1);
+            }
+            else {
+                first_num = Math.exp(1);
+                document.getElementById("log").innerHTML = first_num;
+            }
+        }
+        else {
+            document.getElementById("log").innerHTML = first_num + action + Math.exp(1);
+        }
+    }
+    function f_pi() {
+        if(IsFirst() === true) {
+            if(action !== "" && typeof action !== 'undefined') {
+                document.getElementById("log").innerHTML = first_num + action + Math.PI;
+            }
+            else {
+                first_num = Math.PI;
+                document.getElementById("log").innerHTML = first_num;
+            }
+        }
+        else {
+            document.getElementById("log").innerHTML = first_num + action + Math.PI;
+        }
+    }
+    function f_equality() {
+        second_num = document.getElementById("log").innerHTML;
+        second_num = second_num.slice(parseInt(first_num.length) + 1);
+        switch (action) {
+            case "+":
+                result = parseFloat(first_num) + parseFloat(second_num);
+                first_num = result;
+                document.getElementById("log").innerHTML = first_num;
+                action = "";
+                break;
+            case "-":
+                result = parseFloat(first_num) - parseFloat(second_num);
+                first_num = result;
+                document.getElementById("log").innerHTML = first_num;
+                action = "";
+                break;
+            case "×":
+                if(first_num !== "0" && second_num !== "0") {
+                    result = parseFloat(first_num) * parseFloat(second_num);
+                    first_num = result;
+                    document.getElementById("log").innerHTML = first_num;
+                    action = "";
+                    break;
+                }
+                else {
+                    first_num = "0";
+                    document.getElementById("log").innerHTML = first_num;
+                    action = "";
+                    break
+                }
+            case "÷":
+                if(second_num !== "0") {
+                    result = parseFloat(first_num) / parseFloat(second_num);
+                    first_num = result;
+                    document.getElementById("log").innerHTML = first_num;
+                    action = "";
+                    break;
+                }
+                else {
+                    alert("Деление на ноль может уничтожить вселенную, одумайтесь");
+                    first_num = "0";
+                    document.getElementById("log").innerHTML = first_num;
+                    action = "";
+                    break;
+                }
+            case "^":
+                result = Math.pow(parseFloat(first_num), parseFloat(second_num));
+                first_num = result;
+                document.getElementById("log").innerHTML = first_num;
+                action = "";
+                break;
+            case "√":
+                if(first_num > 0) {
+                    result = Math.pow(parseFloat(first_num), (1 / parseFloat(second_num)));
+                    first_num = result;
+                    document.getElementById("log").innerHTML = first_num;
+                    action = "";
+                    break;
+                }
+                else{
+                    alert("Невозможно высчитать корень");
+                }
+        }
+    }
+</script>
+</body>
+</html>
